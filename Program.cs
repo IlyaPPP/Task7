@@ -1,53 +1,58 @@
-﻿/* **Задача 55:** Задайте двумерный массив. Напишите программу,
-которая заменяет строки на столбцы. В случае, если это невозможно,
-программа должна вывести сообщение для пользователя.
-Например, задан массив:
-1 4 7 2
-5 9 2 3
-8 4 2 4
-5 2 6 7
-В итоге получается вот такой массив:
-1 5 8 5
-4 9 4 2
-7 2 2 6
-2 3 4 7      */
+﻿/* **Задача 57:** Составить частотный словарь элементов двумерного массива.
+Частотный словарь содержит информацию о том,
+сколько раз встречается элемент входных данных.
+1, 2, 3
+4, 6, 1
+2, 1, 6
+1 встречается 3 раза
+2 встречается 2 раз
+3 встречается 1 раз
+4 встречается 1 раз
+6 встречается 2 раза    */
 
-int[,] array = new int[4, 4];
+int[,] array = new int[4, 4];   // двухмерный массив
 
-if (array.GetLength(0) != array.GetLength(1))
-{
-    Console.Write($"Невозможно заменить строки на столбцы");
-    return;
-}
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            array[i, j] = new Random().Next(10);
-            Console.Write(array[i, j]);
-        }
-        Console.WriteLine();
-    }
-}
-
-Console.WriteLine();
-int[,] changeArray = new int[4, 4];
-
-for (int i = 0; i < array.GetLength(0); i++)
-{
+for (int i = 0; i < array.GetLength(0); i++) // цикл for для заполнения двухмерного массива
+{                                            // рандомными числами
     for (int j = 0; j < array.GetLength(1); j++)
     {
-        if (i != j)
-        {
-            changeArray[i, j] = array[j, i];
-            Console.Write(changeArray[i, j]);
-        }
-        else
-        {
-            changeArray[i, j] = array[i, j];
-            Console.Write(changeArray[i, j]);
-        }
+        array[i, j] = new Random().Next(10);
+        Console.Write(array[i, j]);
     }
     Console.WriteLine();
+}
+Console.WriteLine();
+
+int number = 0;
+int count = 0;
+findCount(number);
+
+void findCount(int number)     // функция для подсчета количества символов в двухмерном массиве
+{
+    if (number >= 10)
+        return;
+    else
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (array[i, j] != number)
+                    if (array[i, j] == array.GetLength(0) - 1 && array[i, j] == array.GetLength(1))
+                    {
+                        Console.WriteLine($"{number} = {0}");
+                        number++;
+                    }
+                    else continue;
+                else
+                {
+                    count++;
+                }
+            }
+        }
+        Console.WriteLine($"{number} встречается {count}");
+        count = 0;
+        number++;
+        findCount(number);
+    }
 }
