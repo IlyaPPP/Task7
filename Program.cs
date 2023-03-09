@@ -1,16 +1,10 @@
-﻿/* **Задача 55:** Задайте двумерный массив. Напишите программу,
-которая заменяет строки на столбцы. В случае, если это невозможно,
-программа должна вывести сообщение для пользователя.
+﻿/* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 Например, задан массив:
 1 4 7 2
 5 9 2 3
 8 4 2 4
 5 2 6 7
-В итоге получается вот такой массив:
-1 5 8 5
-4 9 4 2
-7 2 2 6
-2 3 4 7      */
+Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка     */
 
 int[,] array = new int[4, 4];
 
@@ -31,23 +25,14 @@ if (array.GetLength(0) != array.GetLength(1))
     }
 }
 
-Console.WriteLine();
-int[,] changeArray = new int[4, 4];
-
+int min = 37;
+int counters = 0;
 for (int i = 0; i < array.GetLength(0); i++)
 {
+    int sum = 0;
     for (int j = 0; j < array.GetLength(1); j++)
-    {
-        if (i != j)
-        {
-            changeArray[i, j] = array[j, i];
-            Console.Write(changeArray[i, j]);
-        }
-        else
-        {
-            changeArray[i, j] = array[i, j];
-            Console.Write(changeArray[i, j]);
-        }
-    }
-    Console.WriteLine();
+        sum += array[i, j];
+    if (min < sum) continue;
+    else { min = sum; counters++; }
 }
+Console.WriteLine($"Наименьшая сумма элементов в строке -> {counters}");
