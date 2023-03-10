@@ -1,58 +1,27 @@
-﻿/* **Задача 57:** Составить частотный словарь элементов двумерного массива.
-Частотный словарь содержит информацию о том,
-сколько раз встречается элемент входных данных.
-1, 2, 3
-4, 6, 1
-2, 1, 6
-1 встречается 3 раза
-2 встречается 2 раз
-3 встречается 1 раз
-4 встречается 1 раз
-6 встречается 2 раза    */
+﻿/* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
+Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)    */
 
-int[,] array = new int[4, 4];   // двухмерный массив
 
+int[,,] array = new int[2, 2, 2];   // двухмерный массив
+
+int s = 4;
 for (int i = 0; i < array.GetLength(0); i++) // цикл for для заполнения двухмерного массива
 {                                            // рандомными числами
     for (int j = 0; j < array.GetLength(1); j++)
     {
-        array[i, j] = new Random().Next(10);
-        Console.Write(array[i, j]);
-    }
-    Console.WriteLine();
-}
-Console.WriteLine();
-
-int number = 0;
-int count = 0;
-findCount(number);
-
-void findCount(int number)     // функция для подсчета количества символов в двухмерном массиве
-{
-    if (number >= 10)
-        return;
-    else
-    {
-        for (int i = 0; i < array.GetLength(0); i++)
+        for (int z = 0; z < array.GetLength(2); z++)
         {
-            for (int j = 0; j < array.GetLength(1); j++)
-            {
-                if (array[i, j] != number)
-                    if (array[i, j] == array.GetLength(0) - 1 && array[i, j] == array.GetLength(1))
-                    {
-                        Console.WriteLine($"{number} = {0}");
-                        number++;
-                    }
-                    else continue;
-                else
-                {
-                    count++;
-                }
-            }
+            array[j, z, i] = i + j + 7 * s;
+            Console.Write($"{array[j, z, i]}({j}, {z}, {i}) ");
+            s++;
         }
-        Console.WriteLine($"{number} встречается {count}");
-        count = 0;
-        number++;
-        findCount(number);
+        Console.WriteLine();
     }
 }
+
+
