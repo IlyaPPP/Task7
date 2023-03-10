@@ -7,20 +7,20 @@
 26(1,0,1) 55(1,1,1)    */
 
 
-int[,,] array = new int[2, 2, 2];   // двухмерный массив
+int[,,] array = new int[2, 2, 2];   // трехмерный массив
 
 int s = 4;
-for (int i = 0; i < array.GetLength(0); i++) // цикл for для заполнения двухмерного массива
-{                                            // рандомными числами
+for (int i = 0; i < array.GetLength(0); i++) // цикл for для заполнения трехмерного массива
+{
     for (int j = 0; j < array.GetLength(1); j++)
     {
         for (int z = 0; z < array.GetLength(2); z++)
         {
-            array[j, z, i] = i + j + 7 * s;
-            Console.Write($"{array[j, z, i]}({j}, {z}, {i}) ");
+            array[j, z, i] = i + j + 7 * s;             // добавление двухзначных чисел
+            Console.Write($"{array[j, z, i]}({j}, {z}, {i}) ");     // построчный вывод
             s++;
         }
-        Console.WriteLine();
+        Console.WriteLine();        // разделитель
     }
 }
 
