@@ -1,58 +1,44 @@
-﻿/* **Задача 57:** Составить частотный словарь элементов двумерного массива.
-Частотный словарь содержит информацию о том,
-сколько раз встречается элемент входных данных.
-1, 2, 3
-4, 6, 1
-2, 1, 6
-1 встречается 3 раза
-2 встречается 2 раз
-3 встречается 1 раз
-4 встречается 1 раз
-6 встречается 2 раза    */
+﻿/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+Например, даны 2 матрицы:
+2 4 | 3 4
+3 2 | 3 3
+Результирующая матрица будет:
+18 20
+15 18    */
 
-int[,] array = new int[4, 4];   // двухмерный массив
+int[,] matrix1 = createMatrix(4, 4);   // первая матрица
 
-for (int i = 0; i < array.GetLength(0); i++) // цикл for для заполнения двухмерного массива
-{                                            // рандомными числами
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-        array[i, j] = new Random().Next(10);
-        Console.Write(array[i, j]);
-    }
-    Console.WriteLine();
-}
-Console.WriteLine();
-
-int number = 0;
-int count = 0;
-findCount(number);
-
-void findCount(int number)     // функция для подсчета количества символов в двухмерном массиве
+int[,] createMatrix(int a, int b)
 {
-    if (number >= 10)
-        return;
-    else
-    {
-        for (int i = 0; i < array.GetLength(0); i++)
+    int[,] matrix = new int[a, b];
+    for (int i = 0; i < a; i++) // цикл for для заполнения двухмерного массива
+    {                                            // рандомными числами
+        for (int j = 0; j < b; j++)
         {
-            for (int j = 0; j < array.GetLength(1); j++)
-            {
-                if (array[i, j] != number)
-                    if (array[i, j] == array.GetLength(0) - 1 && array[i, j] == array.GetLength(1))
-                    {
-                        Console.WriteLine($"{number} = {0}");
-                        number++;
-                    }
-                    else continue;
-                else
-                {
-                    count++;
-                }
-            }
+            matrix[i, j] = new Random().Next(10);
+            Console.Write(matrix[i, j]);
         }
-        Console.WriteLine($"{number} встречается {count}");
-        count = 0;
-        number++;
-        findCount(number);
+        Console.WriteLine();
+    }
+    return matrix;
+}
+
+Console.WriteLine();            // разделитель
+
+int[,] matrix2 = createMatrix(4, 4);   // вторая матрица
+
+productMatrix();
+
+void productMatrix()     // функция выполняющая умножение двух матриц
+{
+
+    for (int i = 0; i < matrix1.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix1.GetLength(1); j++)
+        {
+            matrix2[i, j] *= matrix1[i, j];
+            Console.Write($"{matrix2[i, j]}  ");
+        }
+        Console.WriteLine();
     }
 }
